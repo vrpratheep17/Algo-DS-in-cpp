@@ -1,0 +1,3 @@
+1. https://nickolasteixeira.medium.com/how-to-explain-to-my-wife-what-i-do-how-do-you-get-the-maximum-and-minimum-values-for-integer-befdc263a3a2
+
+2. https://en.wikibooks.org/wiki/C_Programming/stdint.h
