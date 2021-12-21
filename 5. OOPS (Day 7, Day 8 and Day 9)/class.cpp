@@ -24,5 +24,15 @@ int main(){
     cout<<"Print from static decleration private data"<<S1.getAge()<<endl;
     cout<<"Print from dynamic decleration private data"<<S2->getAge()<<endl;
 
+    //copy constructor
+    Student S3(S1);
+    Student *S4= new Student(*S2);
+    Student S5;
+    S5=S1;
+
+    cout<<"After copying to S3"<<S3.getAge()<<endl;
+      cout<<"After copying to S5"<<S3.getAge()<<endl;
+    delete S2;
+
     return 0;
 }

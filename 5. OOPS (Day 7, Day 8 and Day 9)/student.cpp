@@ -23,4 +23,7 @@ class Student{
     int getAge(){
         return this->age;
     }
+    ~Student(){
+        cout<<"Destructor called"<<endl;
+    }
 };
