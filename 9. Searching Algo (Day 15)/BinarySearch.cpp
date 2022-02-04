@@ -18,6 +18,8 @@ int BinarySearch(vector<int> arr,int key){
     return -1;
 }
 
+
+
 int main(){
     int n;
     cin>>n;
