@@ -52,14 +52,19 @@ class LinkedList{
             int i = 0;
             while(temp!=nullptr){
                 if(i==index){
+                    Node *newhead;
                     if(last==nullptr){
-                        
+                        newhead = head;
                         this->head = head->next;
                     }else if(temp->next==nullptr){
+                        newhead = temp;
                         last->next = nullptr;
                     }else{
+                        newhead = temp;
                         last->next = temp->next;
                     }
+                    delete newhead;
+                    return;
                 }
                 i++;
                 last = temp;
@@ -134,6 +139,63 @@ class LinkedList{
             return this->findByIndex(mid);
         }
 
+        int middleNode(){
+            Node *slow = this->head;
+            Node *fast = this->head->next;
+
+            while(slow && fast && fast->next){
+                slow = slow->next;
+                fast = fast->next->next;
+            }
+
+            if(!fast){
+                return slow->head;
+            }
+
+            if(fast->next==nullptr){ 
+                return slow->next->head;
+            }
+
+        }
+
+        void reverseLinkedList(){
+            Node *temp = this->head;
+            Node *last = this->head;
+            int i = 0;
+            while(temp){
+                Node *n = new Node(temp->head);
+                if(i==0){
+                n->next = nullptr;
+                }else{
+                    n->next= last;   
+                }
+                last = n;
+                i++;
+                temp = temp->next;
+             }
+                this->head = last;  
+        }
+
+        void removeKthelementfromLast(int k){
+            Node *slow = this->head;
+            Node *fast = this->head;
+
+            while(k--){
+                fast = fast->next;
+            }
+
+            if(fast->next){
+                while(fast->next){
+                    slow = slow->next;
+                    fast = fast->next;
+                }
+            }
+
+           // cout << slow->head;
+            slow->next = slow->next->next;
+
+            // NodeToDelete->next = NodeToDelete->next->next;
+        }
         
 };
 
@@ -141,16 +203,22 @@ int main(){
     LinkedList *li = new LinkedList();
     li->insert(1);
     li->insert(2);
-     li->insert(3);
+    li->insert(3);
     li->insert(4);
-       li->insert(3);
-    li->insert(4);
+    li->insert(5);
+    li->insert(6);
+    
     // li->deletebyIndex(0);
     // li->updatebyIndex(1, 33);
     li->print();
     cout << endl;
-    cout << li->find(4);
+   // cout << li->find(4);
     cout << endl;
-    cout << "find mid" << li->findMid();
-    //cout<<endl<<li->length();
+    // cout << "find mid" << li->middleNode();
+   // li->reverseLinkedList();
+    cout << "he" << endl;
+    li->removeKthelementfromLast(2);
+   li->print();
+    // li->print();
+    // cout<<endl<<li->length();
 }
