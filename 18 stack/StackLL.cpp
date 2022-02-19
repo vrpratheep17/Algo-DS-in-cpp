@@ -19,18 +19,16 @@ class Node{
 template<typename T>
 class Stack{
     private:
-        Node<T> *headofList;
+        Node<T> *headofList=nullptr;
         int sizeofList=0;
   
     public:
     void push(T value){
         Node<T> *n = new Node<T>(value);
-        if(this->headofList==nullptr){
-            this->headofList = n;
-        }else{
+       
             n->next = headofList;
             headofList = n;
-        }
+        
         this->sizeofList++;
     };
     bool isEmpty(){
