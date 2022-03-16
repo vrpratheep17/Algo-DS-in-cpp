@@ -1,34 +1,33 @@
 #include<iostream>
 #include<stack>
 #include<string>
+#include <bits/stdc++.h>
 using namespace std;
 
 
 int main(){
     stack<char> s;
-    string value = "aab";
+    string value = "abcd";
     
 
     for (int i = 0; i < value.length();i++){
         
-        if(s.empty()){
+        if(s.empty() || s.top() !=value[i]){
             s.push(value[i]);
         }else{
-            if(s.top()==value[i]){
                 s.pop();
-            }else{
-                s.push(value[i]);
-            }
         }
        
     }
   //  cout <<"hello"<< s.empty() << endl;
+    string toPrint;
     while (!s.empty())
     {
-        cout << s.top() << endl;
+        toPrint.push_back(s.top());
         s.pop();
     }
-    
+    reverse(toPrint.begin(), toPrint.end());
+    cout <<toPrint  << endl;
 
-        return 0;
+    return 0;
 }
