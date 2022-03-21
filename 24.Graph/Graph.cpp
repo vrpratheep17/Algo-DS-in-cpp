@@ -22,7 +22,12 @@ public:
     void dfs(){
      
          vector<int> visisted(sizeL,0);
-         dfsuTil(0,visisted);
+         for (int i = 0; i < visisted.size();i++){
+             if(visisted[i] !=true){
+                    dfsuTil(i, visisted);
+             }
+         }
+            
     }
 
     void dfsuTil(int index, vector<int> &visisted){
@@ -36,12 +41,26 @@ public:
     }
 
 
+    void dfs_disG(){
+
+    }
+
     void bfs(){
+          vector<int> visisted(sizeL,0);
+          for (int i = 0; i < visisted.size();i++){
+              if(visisted[i]!=true){
+                    bfsUtil(i,visisted);
+              }
+              
+          }
+    }
+
+    void bfsUtil(int index, vector<int> &visisted){
         queue<int> q;
-        q.push(0);
-        vector<int> visisted(sizeL,0);
-        cout << "0" << endl;
-        visisted[0] = true;
+        q.push(index);
+      
+        cout << index << endl;
+        visisted[index] = true;
         while(!q.empty()){
             for (int i = 0; i < bucket.size();i++){
                 if(bucket[q.front()][i]==1 && visisted[i] !=true ){
@@ -53,23 +72,60 @@ public:
             q.pop();
         }
     }
+void bfsCount(){
+        int c = 0;
+        
+        
+        vector<int> visisted(sizeL, 0);
+       
+        for (int i = 0; i < visisted.size(); i++)
+        {
+           
+            if (visisted[i] != true)
+            {
+               c = c + 1;
+                
+                bfsUtil(i, visisted);
+            }
+              
+          }
+          cout << "count is " << c;
+    }
+
+void dfsCount(){
+    int c = 0;
+    vector<int> visisted(sizeL, 0);
+    for (int i = 0; i < visisted.size(); i++)
+    {
+        if (visisted[i] != true)
+        {
+            c = c + 1;
+            dfsuTil(i, visisted);
+        }
+         }
+         cout << "count is " << c;
+}
 };
+
 
 int main(){
 
     Graph *g = new Graph(7);
     
-    g->insert(0, 2);
     g->insert(0, 1);
+    g->insert(1, 6);
     g->insert(1, 3);
-    g->insert(1, 4);
-    g->insert(5, 3);
+    g->insert(6, 3);
+    g->insert(1, 6);
+
+    g->insert(2, 4);
+    g->insert(2, 5);
     g->insert(4, 5);
-    g->insert(5, 6);
-    g->insert(6, 2);
+    
     // g->dfs();
 
-    g->bfs();
+    // g->bfs();
+ g->dfsCount();
 
     return 0;
 }
